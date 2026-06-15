@@ -183,7 +183,9 @@ Press `CTRL + C` in the terminal to stop the app.
 
 ## PART 2 — Push to Your Own GitHub Repository
 
-Now you will create your own GitHub repository and push this project to it.
+When you clone this repository, git automatically connects your local folder to the **instructor's** GitHub account. You need to change that connection to point to **your own** GitHub account before you can push.
+
+> **Important:** Do NOT run `git init`. The `.git` folder already exists from the clone. You just need to change where it pushes to.
 
 ---
 
@@ -198,39 +200,64 @@ Now you will create your own GitHub repository and push this project to it.
 
 ---
 
-### Step 2 — Connect and Push
+### Step 2 — Disconnect from the Instructor's Repo
 
-Run these commands in your terminal (replace `YOUR_GITHUB_USERNAME` with your actual username):
+When you cloned this project, git set the remote `origin` to point to the instructor's GitHub. Run this command to remove it:
 
 ```bash
-# Initialize git in the project folder (if not already done)
-git init
-
-# Add all project files
-git add .
-
-# Save a snapshot (commit)
-git commit -m "My spam detection project"
-
-# Rename the branch to main
-git branch -M main
-
-# Connect to your GitHub repository
-git remote add origin https://github.com/YOUR_GITHUB_USERNAME/Spam-Detection.git
-
-# Push to GitHub
-git push -u origin main
+git remote remove origin
 ```
 
-> GitHub may ask for your username and password. Use your GitHub username and a **Personal Access Token** (not your password). Create one at: **GitHub → Settings → Developer settings → Personal access tokens**
+You can verify it's gone with:
+```bash
+git remote -v
+# Should show nothing
+```
 
 ---
 
-### Step 3 — Verify
+### Step 3 — Connect to Your Own Repo
+
+Now link your local folder to the GitHub repository you just created (replace `YOUR_GITHUB_USERNAME`):
+
+```bash
+git remote add origin https://github.com/YOUR_GITHUB_USERNAME/Spam-Detection.git
+```
+
+Verify it's set correctly:
+```bash
+git remote -v
+# Should show your own GitHub URL
+```
+
+---
+
+### Step 4 — Commit and Push
+
+```bash
+# Stage all files
+git add .
+
+# Commit with a message
+git commit -m "My spam detection project"
+
+# Make sure branch is named main
+git branch -M main
+
+# Push to your GitHub
+git push -u origin main
+```
+
+> GitHub may ask for your username and password. Use your GitHub username and a **Personal Access Token** (not your regular password). Create one at: **GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)**
+
+---
+
+### Step 5 — Verify
 
 Go to `https://github.com/YOUR_GITHUB_USERNAME/Spam-Detection` — you should see all your files there!
 
 ---
+
 
 ## PART 3 — Docker
 
